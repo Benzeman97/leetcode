@@ -1,4 +1,5 @@
 package com.benz.demo.pattern.structural;
+/*
 
 class University
 {
@@ -54,4 +55,61 @@ public class PenAdepter implements Pen{
         pilotPen.mark(str);
     }
 
+}
+*/
+
+class University{
+
+    public void doAssignment()
+    {
+        Pen pen =new PenAdepter();
+
+        Assignment assignment=new Assignment();
+        assignment.setPen(pen);
+        assignment.write("I am bit tired to write an assignment");
+    }
+}
+
+class Assignment{
+
+    private Pen pen;
+
+    public Pen getPen() {
+        return pen;
+    }
+
+    public void setPen(Pen pen) {
+        this.pen = pen;
+    }
+
+    public void write(String msg)
+    {
+         pen.write(msg);
+    }
+}
+
+interface Pen{
+    void write(String msg);
+}
+
+class PilotPen{
+
+    public void mark(String msg)
+    {
+        System.out.println(msg);
+    }
+}
+
+public class PenAdepter implements Pen{
+
+    @Override
+    public void write(String msg) {
+        PilotPen pilotPen=new PilotPen();
+        pilotPen.mark(msg);
+    }
+
+    public void start()
+    {
+        new University().doAssignment();
+    }
 }

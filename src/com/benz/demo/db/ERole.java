@@ -1,6 +1,6 @@
 package com.benz.demo.db;
 
-public enum Role {
+public enum ERole {
 
     ROLE_USER(101, "ROLE_USER"),
     ROLE_ADMIN(102, "ROLE_ADMIN"),
@@ -9,7 +9,7 @@ public enum Role {
     private final int roleId;
     private final String roleName;
 
-    Role(int roleId, String roleName) {
+    ERole(int roleId, String roleName) {
         this.roleId = roleId;
         this.roleName = roleName;
     }

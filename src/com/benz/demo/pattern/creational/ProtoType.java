@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+/*
 class Book
 {
     private int bookId;
@@ -134,8 +135,10 @@ public class ProtoType {
         BookShop bookShop = new BookShop("benz");
         bookShop.loadBook();
 
-       /* BookShop bookShop2 = (BookShop) bookShop.clone();//shallow cloning
-        bookShop2.loadBook();*/
+       */
+/* BookShop bookShop2 = (BookShop) bookShop.clone();//shallow cloning
+        bookShop2.loadBook();*//*
+
 
         BookShop bookShop2 = bookShop.deepClone("kelly"); //deep cloning
         bookShop2.loadBook();
@@ -145,6 +148,102 @@ public class ProtoType {
         System.out.println(bookShop);
         System.out.println(bookShop2);
     }
+*/
 
+class Book{
+    private int bookId;
+    private String bookName;
+    private double price;
+
+    public Book() {
+    }
+
+    public Book(int bookId, String bookName, double price) {
+        this.bookId = bookId;
+        this.bookName = bookName;
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "bookId=" + bookId +
+                ", bookName=" + bookName+
+                ", price=" + price +
+                '}';
+    }
+}
+
+class BookShop implements Cloneable{
+    private String name;
+    private List<Book> books;
+
+    public BookShop(String name) {
+        this.name = name;
+        this.books = new ArrayList<>();
+    }
+
+    public void loadBooks()
+    {
+        for(int i=10;i<=20;i++){
+            Book book=new Book(i,"Book "+i,getPrice());
+            books.add(book);
+        }
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private double getPrice()
+    {
+        int minPrice=1000;
+        int maxPrice=50000;
+       return Math.floor((Math.random()*(maxPrice-(minPrice+1))/10)*10);
+    }
+
+    @Override
+    public String toString() {
+        return "BookShop{" +
+                "name='" + name + '\'' +
+                ", books=" + books +
+                '}';
+    }
+
+   /* @Override
+    protected Object clone() throws CloneNotSupportedException { //shallow cloning
+        return super.clone();
+    }*/
+
+   public BookShop deepClone(String name)  //deep cloning
+   {
+        BookShop bookShop=new BookShop(name);
+        bookShop.loadBooks();
+        return bookShop;
+   }
+}
+
+
+public class ProtoType{
+
+    public void show() throws Exception
+    {
+        BookShop bookShop=new BookShop("Benz");
+        bookShop.loadBooks();
+        bookShop.getBooks().remove(1);
+
+       /* BookShop bookShop2=(BookShop) bookShop.clone();
+        bookShop2.setName("Kelly");
+        bookShop2.loadBooks();*/
+
+        BookShop bookShop2 = bookShop.deepClone("Kelly");
+
+        System.out.println(bookShop);
+        System.out.println(bookShop2);
+    }
 
 }
