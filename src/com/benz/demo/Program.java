@@ -1,12 +1,14 @@
 package com.benz.demo;
 
-import com.benz.demo.ds.DoubleLinkedList;
+
+import com.benz.demo.ds.BinarySearchTree;
 
 public class Program {
 
     public static void main(String[] args) throws Exception{
 
-        new DoubleLinkedList().show();
+        BinarySearchTree binarySearchTree=new BinarySearchTree();
+        binarySearchTree.start();
     }
 }
 
