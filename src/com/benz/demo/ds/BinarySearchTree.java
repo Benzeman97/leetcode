@@ -20,6 +20,7 @@ public class BinarySearchTree {
             System.out.println("1.Insertion");
             System.out.println("2.Deletion");
             System.out.println("3.Traverse");
+            System.out.println("4.Search");
             System.out.println("Enter Your Choice");
             int ch=Integer.valueOf(reader.readLine());
             switch (ch){
@@ -34,6 +35,10 @@ public class BinarySearchTree {
                 case 3: inOrderTraverse(root);
                         System.out.print("\n");
                         break;
+                case 4: int s_data;
+                    System.out.println("Enter a value to search");
+                    s_data=Integer.valueOf(reader.readLine());
+                    findNode(s_data,root);break;
                 default:
                     System.out.println("Invalid Input");
             }
@@ -151,7 +156,7 @@ public class BinarySearchTree {
     private void inOrderTraverse(Node node){
 
         if(root==null)
-            System.out.println("no node in the tree");
+            System.out.println("no node(s) in the tree");
         else {
             if (node.l_link != null)
                 inOrderTraverse(node.l_link);
@@ -159,6 +164,16 @@ public class BinarySearchTree {
             if (node.r_link != null)
                 inOrderTraverse(node.r_link);
         }
+    }
+
+    private void findNode(int data,Node curr)
+    {
+            if(curr.l_link!=null)
+                findNode(data,curr.l_link);
+            if(data==curr.data)
+                System.out.printf("Node is found with %d\n",data);
+            if(curr.r_link!=null)
+                findNode(data,curr.r_link);
     }
 
 }
